@@ -1,0 +1,39 @@
+WebOutlet on base of ESP8266 board.
+
+
+PIN assignment:
+D3	I 	GPIO0  	- Control Button to ground
+D4  	O 	GPIO2  	- OnBoard LED. External LED may be connected
+D5  	I 	GPIO14 	- IRDA receiver.
+D6  	O 	GPIO12 	- Power relay. 1-On, 0-Off
+
+Working cycle.
+
+1) PowerOn. Relay ON.
+2) If selected AP mode (Factory defaults) - Pinger is off.
+   Controller stays in AP untill it is switched to STA with WEB interface.
+   In this mode relay may be turned On and Off by Web or IRDA commands.
+   go to 5.
+3) Trying to get IP an STA mode. LED flashes 500 on 1000 off mc.
+   If connection is established - All Ok. Go to 5.
+4) Wait for 60 sec for connecting in STA mode. 
+   If WiFi network is not connected (for example - password wrong), controller switches to AP mode. 
+   After 10 min in AP it goes back to 3 - try to connect in STA.
+   Every access to WEB interface reset AP->STA timer.
+5) Pause 10 min (Post Restart Delay).
+6) Ping address with TTL 30 sec (Ping TTL).
+   If no IP adresses set in interface - go back to 6.
+   If connection lost - go to 3.
+7) If there is answer - pause 1 min (Ping Interval) and go to 6. Led blinks 1000 On 20 off 
+8) If there is no answer - try repeat ping (Ping Retries). Led blinks 1000 On 200 off 
+9) If there is still no answer - go to next address. Led blinks 1000 On 500 off 
+10) If all address are processed and there was no answer - reset power on 15 sec (Restart PowerOff). 
+    Led blinks 100 On 200 off while in reset mode.
+    go to 5
+
+Button: 
+ 2 presses or Long press over 5 sec - Execute Power reset (15 sec switch off)
+ 4 presses - toggle power outlet On & Off. 
+   If power toggled manually - it will remain in this state till PowerReset command.
+ 6 presses - toggle ping check mode (only when WiFi is in Client mode)
+10 presses - Reset to factory defaults. Clear flash and start in AP mode for configuration.

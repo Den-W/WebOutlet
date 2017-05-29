@@ -1,0 +1,47 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<head><meta http-equiv="Content-Type" content="text/html; charset=win1251">
+<meta name=viewport content="width=device-width, initial-scale=1.1">
+<style>
+
+h4{text-align: center;background: orange;margin: -2px 0 1em 0;}
+body {font-size:14px;}
+label {float:left; padding-right:10px;}
+.fld{clear:both; text-align:right; line-height:25px;}
+.frm{float:left;border: 2px solid #634f36;background: #f3f0e9;padding: 5px;margin:3px;}
+input[type=number]{width: 5em;} 
+</style>
+<script type="text/javascript">
+ function TxRq(url,fName,id)
+ { var xhr = new XMLHttpRequest();
+   xhr.open('POST',url,false);
+   var fData = new FormData(document.forms.namedItem(fName));
+   xhr.send(fData);
+   if (xhr.status != 200) alert( "TxRq error - " + xhr.status + ': ' + xhr.statusText );
+   else { if (id) document.getElementById(id).innerHTML = xhr.responseText; }
+ }
+
+ window.addEventListener("load",function(e)
+ { document.getElementById("btC").addEventListener("click",bhC);
+ })
+ function bhC(){ TxRq("w","fW" ); }
+</script></head><body>
+<div class="frm"><h4>TvDvd:WebOutlet WiFi & Login config</h4>
+<form name="fW" method="POST">
+ <div class="fld"><label for="wM">WiFi Mode</label><select name="wM"><option value="1" selected>Client</option></select></div>
+ <hr>
+ <div class="fld"><label for="wN">AP Net ID:</label><input type="text" name="wN" maxlength="15" value=WebOutlet></div>
+ <div class="fld"><label for="wP">AP Password:</label><input type="text" name="wP" maxlength="15" value=weboutlet></div>
+ <hr>
+ <div class="fld"><label for="wC">Clnt Net ID:</label><input type="text" name="wC" maxlength="15" value=DW-WF></div>
+ <div class="fld"><label for="wA">Clnt Password:</label><input type="text" name="wA" maxlength="15" value=1qazxcde345></div>
+ <hr>
+ <div class="fld"><label for="wL">Login:</label><input type="text" name="wL" maxlength="15" value=Admin></div>
+ <div class="fld"><label for="wS">Password:</label><input type="text" name="wS" maxlength="31" value=admin></div> 
+ <div class="fld"><label for="wH">Host Name:</label><input type="text" name="wH" maxlength="15" value=TvDvd></div> 
+ <hr>
+ <div style="float:left;"><a href="i">Main</a>&emsp;<a href="p">PingConfig</a></div>
+ <div style="float:right;"><button id="btC">Set params</button></div>
+</form>
+</div>
+</body></html>

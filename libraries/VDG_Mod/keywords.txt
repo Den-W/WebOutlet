@@ -1,0 +1,27 @@
+################################################
+# Syntax Coloring Map For Vdg_Mod
+################################################
+
+################################################
+# Datatypes (KEYWORD1)
+################################################
+
+CKey		KEYWORD1
+CBlinker	KEYWORD1
+CWebVar		KEYWORD1
+
+################################################
+# Methods and Functions (KEYWORD2)
+################################################
+
+VM_Crc8		KEYWORD2
+VM_FlashRd	KEYWORD2
+VM_FlashWr	KEYWORD2
+VM_LedSyncFlash KEYWORD2
+VM_Led13Flash   KEYWORD2
+
+################################################
+# Constants and enums (LITERAL1)
+################################################
+
+ctl_assert	LITERAL1

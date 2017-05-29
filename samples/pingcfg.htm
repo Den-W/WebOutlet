@@ -1,0 +1,54 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<head><meta http-equiv="Content-Type" content="text/html; charset=win1251">
+<meta name=viewport content="width=device-width, initial-scale=1.1">
+<style>
+
+h4{text-align: center;background: orange;margin: -2px 0 1em 0;}
+body {font-size:14px;}
+label {float:left; padding-right:10px;}
+.fld{clear:both; text-align:right; line-height:25px;}
+.frm{float:left;border: 2px solid #634f36;background: #f3f0e9;padding: 5px;margin:3px;}
+input[type=number]{width: 5em;} 
+</style>
+<script type="text/javascript">
+ function TxRq(url,fName,id)
+ { var xhr = new XMLHttpRequest();
+   xhr.open('POST',url,false);
+   var fData = new FormData(document.forms.namedItem(fName));
+   xhr.send(fData);
+   if (xhr.status != 200) alert( "TxRq error - " + xhr.status + ': ' + xhr.statusText );
+   else { if (id) document.getElementById(id).innerHTML = xhr.responseText; }
+ }
+
+ window.addEventListener("load",function(e)
+ { document.getElementById("btC").addEventListener("click",bhC);
+ })
+ function bhC(){ TxRq("p","fP" ); }
+</script></head><body>
+<div class="frm"><h4>TvDvd:WebOutlet Ping config</h4>
+<form name="fP" method="POST">
+ <div class="fld"><label for="pT">Ping TTL (sec):</label><input type="number" style="width: 5em" name="pT" min="1" max="120" value=30></div>
+ <div class="fld"><label for="pR">Ping Retries:</label><input type="number" name="pR" min="1" max="32" value=4></div>
+ <div class="fld"><label for="pI">Ping Interval (sec):</label><input type="number" name="pI" min="1" max="3600" value=60></div>
+ <hr/> 
+ <div class="fld"><label for="A1">Address1:</label><input type="text" name="A1" maxlength="15" value=0.0.0.0></div>
+ <div class="fld"><label for="A2">Address2:</label><input type="text" name="A2" maxlength="15" value=0.0.0.0></div>
+ <div class="fld"><label for="A3">Address3:</label><input type="text" name="A3" maxlength="15" value=0.0.0.0></div>
+ <div class="fld"><label for="A4">Address4:</label><input type="text" name="A4" maxlength="15" value=0.0.0.0></div>
+ <hr/>
+ <div class="fld"><label for="rO">Pinger ON:</label><input type="checkbox" name="rO" checked></div> 
+ <div class="fld"><label for="rL">Restart PowerOff (sec):</label><input type="number" name="rL" min="1" max="600" value=15></div> 
+ <div class="fld"><label for="rI">Post Restart Delay (min):</label><input type="number" name="rI" min="1" max="120" value=1></div> 
+ <hr/>
+ <div class="fld"><label for="I1">IRDA On:</label><input type="text" name="I1" maxlength="4" value=1111></div>
+ <div class="fld"><label for="I2">IRDA Off:</label><input type="text" name="I2" maxlength="4" value=4444></div>
+ <div class="fld"><label for="I3">IRDA Restart:</label><input type="text" name="I3" maxlength="4" value=5555></div>
+ <div class="fld"><label for="I4">IRDA Ping ON:</label><input type="text" name="I4" maxlength="4" value=4444></div>
+ <div class="fld"><label for="I5">IRDA Ping OFF:</label><input type="text" name="I5" maxlength="4" value=5555></div>
+ <hr/> 
+ <div style="float:left;"><a href="i">Main</a>&emsp;<a href="w">WebConfig</a></div>
+ <div style="float:right;"><button id="btC">Set params</button></div>
+</form>
+</div>
+</body></html>

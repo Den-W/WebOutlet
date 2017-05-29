@@ -1,0 +1,37 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<head><meta http-equiv="Content-Type" content="text/html; charset=win1251">
+<meta name=viewport content="width=device-width, initial-scale=1.1">
+<style>
+
+h4{text-align: center;background: orange;margin: -2px 0 1em 0;}
+body {font-size:14px;}
+label {float:left; padding-right:10px;}
+.fld{clear:both; text-align:right; line-height:25px;}
+.frm{float:left;border: 2px solid #634f36;background: #f3f0e9;padding: 5px;margin:3px;}
+input[type=number]{width: 5em;} 
+</style>
+<script type="text/javascript">
+ function TxRq(url,fName,id)
+ { var xhr = new XMLHttpRequest();
+   xhr.open('POST',url,false);
+   var fData = new FormData(document.forms.namedItem(fName));
+   xhr.send(fData);
+   if (xhr.status != 200) alert( "TxRq error - " + xhr.status + ': ' + xhr.statusText );
+   else { if (id) document.getElementById(id).innerHTML = xhr.responseText; }
+ }
+
+ window.addEventListener("load",function(e)
+ { document.getElementById("btC").addEventListener("click",bhC);
+ })
+ function bhC(){ TxRq("l","fL" ); }
+</script></head>
+<body><div class="frm"><h4>TvDvd:WebOutlet Login</h4>
+<form name="fL" method="POST"><br/>
+<div class="fld"><label for="lL">Login:</label><input type="text" name="lL" maxlength="16"></div><br/>
+<div class="fld"><label for="lP">Password:</label><input type="password" name="lP" maxlength="32"</div><br/>&emsp;
+<hr/> 
+<div style="float:right;"><button id="btC">Submit</button></div>
+</form></div>
+</div>
+</body></html>
