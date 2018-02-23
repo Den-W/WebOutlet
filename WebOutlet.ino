@@ -152,7 +152,7 @@ void  CGlobalData::CheckAP(void)
 
   // Want STA, but active AP
   if( millis() - mWebSessTm < 2*60*1000L ) mTmAP = millis(); // Some activity in AP/WEB detected. Reset AP->STA interval.
-  if( millis() - mTmAP < 1*60*1000L ) return; // STA conn failed. Wait 10 min in AP before reconnecting
+  if( millis() - mTmAP < 10*60*1000L ) return; // STA conn failed. Wait 10 min in AP before reconnecting
   Serial.println( " Trying STA again." );
   mWf_ModeCur = 1;
   mfCall = &CGlobalData::fInit;
